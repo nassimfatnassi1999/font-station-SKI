@@ -1,0 +1,3 @@
+.nav-link {
+    pointer-events: auto; /* S'assurer que les événements de clic sont actifs */
+}

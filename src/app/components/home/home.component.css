@@ -1,0 +1,15 @@
+/* src/app/mon-composant/mon-composant.component.css */
+.fullscreen-image {
+    top: 0;
+    left: 0;
+    width: 100%; /* 100% de la largeur de la fenêtre */
+    height: 92vh; /* 100% de la hauteur de la fenêtre */
+    overflow: hidden; /* Évite le débordement */
+  }
+  
+  .fullscreen-image img {
+    width: 100%; /* L'image occupe 100% de la largeur */
+    height: 100%; /* L'image occupe 100% de la hauteur */
+    object-fit: cover; /* Garde le rapport d'aspect de l'image */
+  }
+  
