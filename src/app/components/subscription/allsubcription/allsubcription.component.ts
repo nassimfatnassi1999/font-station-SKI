@@ -32,10 +32,10 @@ export class AllsubcriptionComponent {
       }
     );
   }
-  onEdit(){
+  onEdit(num :any){
 
   }
-  onDelete(){
+  onDelete(num :any){
 
   }
 }

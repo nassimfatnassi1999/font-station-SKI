@@ -23,7 +23,7 @@
             <td>{{ subscription.price }}</td>
             <td>{{ subscription.typeSub }}</td>
             <td>
-              <button class="btn btn-warning btn-sm" (click)="onEdit(subscription)">Update</button>
+              <button class="btn btn-warning btn-sm" (click)="onEdit(subscription.numSub)">Update</button>
               <button class="btn btn-danger btn-sm" (click)="onDelete(subscription.numSub)">Delete</button>
             </td>
           </tr>
