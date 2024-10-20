@@ -10,7 +10,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterModule,HttpClientModule,CommonModule],
   templateUrl: './allsubcription.component.html',
-  styleUrl: './allsubcription.component.css'
+  styleUrl: './allsubcription.component.css',
+  providers: [SubcriptionService]
+
 })
 export class AllsubcriptionComponent {
   subscriptions: Subscription[] = [];

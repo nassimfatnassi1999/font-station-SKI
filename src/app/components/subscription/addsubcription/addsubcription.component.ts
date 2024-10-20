@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [HttpClientModule,ReactiveFormsModule,CommonModule],
   templateUrl: './addsubcription.component.html',
-  styleUrl: './addsubcription.component.css'
+  styleUrl: './addsubcription.component.css',
+  providers: [SubcriptionService]
 })
 export class AddsubcriptionComponent {
   subscription!: Subscription;
