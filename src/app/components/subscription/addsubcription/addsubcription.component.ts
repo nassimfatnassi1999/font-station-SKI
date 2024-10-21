@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-addsubcription',
   standalone: true,
+  providers: [SubcriptionService], 
   imports: [HttpClientModule,ReactiveFormsModule,CommonModule],
   templateUrl: './addsubcription.component.html',
   styleUrl: './addsubcription.component.css'
