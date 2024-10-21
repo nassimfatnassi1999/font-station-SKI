@@ -12,9 +12,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   imports: [RouterModule,HttpClientModule,CommonModule],
  
   templateUrl: './allsubcription.component.html',
-  styleUrl: './allsubcription.component.css',
-  providers: [SubcriptionService]
-
+  styleUrl: './allsubcription.component.css'
 })
 export class AllsubcriptionComponent  {
   subscriptions: Subscription[] = [];

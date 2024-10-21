@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
   providers: [SubcriptionService], 
   imports: [HttpClientModule,ReactiveFormsModule,CommonModule],
   templateUrl: './addsubcription.component.html',
-  styleUrl: './addsubcription.component.css',
-  providers: [SubcriptionService]
+  styleUrl: './addsubcription.component.css'
 })
 export class AddsubcriptionComponent {
   subscription!: Subscription;
