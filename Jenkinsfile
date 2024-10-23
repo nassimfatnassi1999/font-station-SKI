@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image for frontend
-                    sh 'docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} .'
+                    sh 'docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} /home/vagrant/workspace/5Arctic-G1-front/'
                 }
             }
         }
