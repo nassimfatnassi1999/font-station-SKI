@@ -1,14 +1,13 @@
 pipeline {
     agent {label 'agent2'}
-    tools {
-        jdk 'JAVA_HOME'
-    }
+    
 
-    environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+     environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub')
          DOCKER_IMAGE = 'front-g1-stationski'  
         IMAGE_TAG = 'latest'  
     }
+
 
     stages {
         stage('Checkout Frontend') {
@@ -42,7 +41,7 @@ pipeline {
         stage('Push Frontend Docker Image to Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         retry(3) { // Retry up to 3 times
                             // Login to Docker Hub
                             sh script: 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin', returnStdout: true
