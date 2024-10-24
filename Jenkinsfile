@@ -5,7 +5,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub_credentials')
          DOCKER_IMAGE = 'front-g1-stationski'  
         IMAGE_TAG = 'latest'  
     }
