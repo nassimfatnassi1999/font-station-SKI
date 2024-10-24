@@ -19,7 +19,7 @@ pipeline {
                         error("Failed to access Git repository")
                     }
                 }
-                git branch: 'master', url: 'https://github.com/nassimfatnassi1999/font-station-SKI.git'
+                git branch: 'aladin_stationSKI_front', url: 'https://github.com/nassimfatnassi1999/font-station-SKI.git'
             }
         }
 
