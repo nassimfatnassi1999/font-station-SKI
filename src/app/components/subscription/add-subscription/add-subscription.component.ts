@@ -35,6 +35,7 @@ export class AddSubscriptionComponent implements OnInit {  // Corrected name
   onSubmit() {
     if (this.subscriptionForm.valid) {  // Check if the form is valid before submission
       this.subscriptionService.addSubscription(this.subscriptionForm.value)
+      
         .subscribe({
           next: (response) => {
             console.log(response)
