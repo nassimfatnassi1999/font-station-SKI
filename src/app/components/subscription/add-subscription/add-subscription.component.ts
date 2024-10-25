@@ -37,6 +37,7 @@ export class AddSubscriptionComponent implements OnInit {  // Corrected name
       this.subscriptionService.addSubscription(this.subscriptionForm.value)
         .subscribe({
           next: (response) => {
+            console.log(response)
             console.log('Subscription added successfully:', response);
             this.rt.navigate(["/subscription"]);  // Navigate to subscription page after success
           },
