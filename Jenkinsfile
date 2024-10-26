@@ -23,7 +23,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 sh 'npm install'
-                sh 'ng build --prod'
+                sh 'ng build '
             }
         }
 
