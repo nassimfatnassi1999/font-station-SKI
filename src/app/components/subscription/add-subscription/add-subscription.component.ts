@@ -35,12 +35,15 @@ export class AddSubscriptionComponent implements OnInit {  // Corrected name
   onSubmit() {
     if (this.subscriptionForm.valid) {  // Check if the form is valid before submission
       this.subscriptionService.addSubscription(this.subscriptionForm.value)
+
         .subscribe({
           next: (response) => {
             console.log('Subscription added successfully:', response);
             this.rt.navigate(["/subscription"]);  // Navigate to subscription page after success
           },
+          
           error: (error) => {
+            console.log(error);
             console.error('There was an error adding the subscription:', error);
           }
         });
