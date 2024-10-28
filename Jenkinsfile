@@ -64,7 +64,7 @@ pipeline {
                     echo "Deploying frontend application using deploy_front.yml."
                     sh 'kubectl apply -f deploy_front.yml'
                 }
-            }
+            }git 
         }
     
 
