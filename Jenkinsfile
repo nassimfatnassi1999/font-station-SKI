@@ -1,13 +1,13 @@
 pipeline {
-    agent {label 'agent2'}
+    agent { label 'agent2' }
     tools {
         jdk 'JAVA_HOME'
     }
 
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('DockerHub')
-         DOCKER_IMAGE = 'front-g1-stationski'  
-        IMAGE_TAG = 'latest'  
+        DOCKER_IMAGE = 'front-g1-stationski'
+        IMAGE_TAG = 'latest'
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
                 sh 'ng build'
             }
         }
-        
+
         stage('Docker Build Frontend') {
             steps {
                 script {
@@ -57,8 +57,8 @@ pipeline {
                 }
             }
         }
-    }
-     stage('Deploy to AKS') {
+
+        stage('Deploy to AKS') {
             steps {
                 script {
                     echo "Deploying frontend application using deploy_front.yml."
@@ -66,7 +66,7 @@ pipeline {
                 }
             }
         }
-    
+    }
 
     post {
         success {
