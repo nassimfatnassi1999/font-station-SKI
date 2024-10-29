@@ -57,25 +57,27 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Frontend with K8S Manifest') {
-                    agent { label 'agent2' }
-                    steps {
-                        script {
-                            // Accessing the deployment_front.yaml and applying it
-                            echo "Deploying frontend application using deployment_front.yaml."
-                            sh '''
-                                kubectl apply -f /home/vagrant/jenkins-agent2/workspace/5Arctic-G1-SKI-Backend/manifest_files/deploy_frontend.yml
-                            '''
-                             sleep 70
-                            // Get LoadBalancer IP of the frontend service
-                            def frontendIP = sh(
-                                script: "kubectl get svc frontend-service | awk '/frontend-service/ {print $4}'",
-                                returnStdout: true
-                            ).trim()
-                            env.FRONTEND_IP = frontendIP
-                        }
-                    }
-                }
+       stage('Deploy Frontend with K8S Manifest') {
+            agent { label 'agent2' }
+             steps {
+             script {
+            // Accessing the deployment_front.yaml and applying it
+            echo "Deploying frontend application using deployment_front.yaml."
+            sh '''
+                kubectl apply -f /home/vagrant/jenkins-agent2/workspace/5Arctic-G1-SKI-Backend/manifest_files/deploy_frontend.yml
+            '''
+            sleep 70
+            // Get LoadBalancer IP of the frontend service
+            def frontendIP = sh(
+                script: "kubectl get svc frontend-service | awk '/frontend-service/ {print \$4}'",
+                returnStdout: true
+            ).trim()
+            env.FRONTEND_IP = frontendIP
+            echo "Frontend service IP: ${env.FRONTEND_IP}"
+        }
+    }
+}
+
     }
 
     post {
