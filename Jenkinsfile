@@ -69,7 +69,7 @@ pipeline {
                              sleep 70
                             // Get LoadBalancer IP of the frontend service
                             def frontendIP = sh(
-                                script: "kubectl get svc frontend-service | awk '/frontend-service/ {print \$4}'",
+                                script: "kubectl get svc frontend-service | awk '/frontend-service/ {print $4}'",
                                 returnStdout: true
                             ).trim()
                             env.FRONTEND_IP = frontendIP
