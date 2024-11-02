@@ -57,6 +57,19 @@ pipeline {
                 }
             }
         }
+
+
+ stage('Deploy to AKS') {
+            steps {
+                script {
+                    echo "Deploying frontend application using deploy.yml."
+                    sh 'kubectl apply -f deploy.yml'
+                }
+            }
+        }
+
+
+
     }
 
     post {
