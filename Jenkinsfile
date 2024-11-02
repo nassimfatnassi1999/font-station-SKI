@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'default'}
+    agent any
     tools {
         jdk 'JAVA_HOME'
     }
