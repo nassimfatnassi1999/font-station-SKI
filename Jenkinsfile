@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'agent2'}
+    agent {label 'default'}
     tools {
         jdk 'JAVA_HOME'
     }
@@ -19,7 +19,7 @@ pipeline {
                         error("Failed to access Git repository")
                     }
                 }
-                git branch: 'master', url: 'https://github.com/nassimfatnassi1999/font-station-SKI.git'
+                git branch: 'ManaiMaram_stationSKI_front', url: 'https://github.com/nassimfatnassi1999/font-station-SKI.git'
             }
         }
 
