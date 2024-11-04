@@ -7,9 +7,6 @@ pipeline {
         IMAGE_TAG = 'latest'
     }
 
-    tools {
-        nodejs 'NodeJS' // Assurez-vous que NodeJS est configuré dans Jenkins sous le nom 'NodeJS'
-    }
 
     stages {
         stage('Checkout Frontend') {
