@@ -1,11 +1,14 @@
 pipeline {
-    agent {label 'master'}
-  
+    agent { label 'master' }
 
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker_token')
-         DOCKER_IMAGE = 'front-g1-stationski'  
-        IMAGE_TAG = 'latest'  
+        DOCKER_IMAGE = 'front-g1-stationski'
+        IMAGE_TAG = 'latest'
+    }
+
+    tools {
+        nodejs 'NodeJS' // Assurez-vous que NodeJS est configuré dans Jenkins sous le nom 'NodeJS'
     }
 
     stages {
@@ -24,15 +27,15 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 sh 'npm install'
-                sh 'ng build'
+                sh 'ng build --configuration production' // Utiliser la configuration de production pour le build
             }
         }
-        
+
         stage('Docker Build Frontend') {
             steps {
                 script {
                     // Build Docker image for frontend
-                    sh 'docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} .'
+                    sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
                 }
             }
         }
@@ -43,18 +46,20 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker_token', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         retry(3) { // Retry up to 3 times
                             // Login to Docker Hub
-                            sh script: 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin', returnStdout: true
+                            sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                             
                             // Tag the Docker image
-                            sh 'docker tag ${DOCKER_IMAGE}:${IMAGE_TAG} $DOCKER_USERNAME/${DOCKER_IMAGE}:${IMAGE_TAG}'
+                            sh "docker tag ${DOCKER_IMAGE}:${IMAGE_TAG} $DOCKER_USERNAME/${DOCKER_IMAGE}:${IMAGE_TAG}"
                             
                             // Push the Docker image
-                            sh 'docker push $DOCKER_USERNAME/${DOCKER_IMAGE}:${IMAGE_TAG}'
+                            sh "docker push $DOCKER_USERNAME/${DOCKER_IMAGE}:${IMAGE_TAG}"
                         }
                     }
                 }
             }
-            stage('Deploy to AKS') {
+        }
+
+        stage('Deploy to AKS') {
             steps {
                 script {
                     echo "Deploying frontend application using deploy.yml."
@@ -68,17 +73,14 @@ pipeline {
         success {
             script {
                 slackSend(channel: '#jenkins-messg', 
-                          message: " réussi : ${env.JOB_NAME} #${env.BUILD_NUMBER} ! Image pushed: ${DOCKER_IMAGE}:${IMAGE_TAG} successfully.")
+                          message: "Build réussi : ${env.JOB_NAME} #${env.BUILD_NUMBER}! Image pushed: ${DOCKER_IMAGE}:${IMAGE_TAG} successfully.")
             }
         }
         failure {
             script {
                 slackSend(channel: '#jenkins-messg', 
-                          message: " échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}.")
+                          message: "Build échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}.")
             }
         }
-        }
     }
-
-  
 }
