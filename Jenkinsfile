@@ -1,5 +1,5 @@
 pipeline {
-    
+    agent { label 'master' }
 
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker_token')
