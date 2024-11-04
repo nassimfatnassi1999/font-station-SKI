@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: marammanai/front-g1-stationski:latest
+          image: marammanai/front-g1-stationski
           ports:
             - containerPort: 80
               name: frontend-port
