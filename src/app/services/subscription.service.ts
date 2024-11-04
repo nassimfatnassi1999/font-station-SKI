@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class SubcriptionService {
-  apiUrl: string ="http://4.157.170.199:9001/api/subscription";
+  apiUrl: string ="http://57.152.101.56:9001/api/subscription";
 
   constructor(private http: HttpClient) { }
 
