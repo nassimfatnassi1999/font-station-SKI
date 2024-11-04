@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     echo "Deploying frontend application using deploy.yml."
-                    sh 'kubectl apply -f deploy.yml'
+                    sh 'kubectl apply -f deployment.yml'
                 }
             }
         }
