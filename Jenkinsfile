@@ -54,6 +54,29 @@ pipeline {
                     }
                 }
             }
+            stage('Deploy to AKS') {
+            steps {
+                script {
+                    echo "Deploying frontend application using deploy.yml."
+                    sh 'kubectl apply -f deploy.yml'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                slackSend(channel: '#jenkins-messg', 
+                          message: " réussi : ${env.JOB_NAME} #${env.BUILD_NUMBER} ! Image pushed: ${DOCKER_IMAGE}:${IMAGE_TAG} successfully.")
+            }
+        }
+        failure {
+            script {
+                slackSend(channel: '#jenkins-messg', 
+                          message: " échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}.")
+            }
+        }
         }
     }
 
