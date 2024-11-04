@@ -67,18 +67,18 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            script {
-                slackSend(channel: '#jenkins-messg', 
-                          message: "Build réussi : ${env.JOB_NAME} #${env.BUILD_NUMBER}! Image pushed: ${DOCKER_IMAGE}:${IMAGE_TAG} successfully.")
-            }
-        }
-        failure {
-            script {
-                slackSend(channel: '#jenkins-messg', 
-                          message: "Build échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}.")
-            }
-        }
-    }
+    // post {
+    //     success {
+    //         script {
+    //             slackSend(channel: '#jenkins-messg', 
+    //                       message: "Build réussi : ${env.JOB_NAME} #${env.BUILD_NUMBER}! Image pushed: ${DOCKER_IMAGE}:${IMAGE_TAG} successfully.")
+    //         }
+    //     }
+    //     failure {
+    //         script {
+    //             slackSend(channel: '#jenkins-messg', 
+    //                       message: "Build échoué : ${env.JOB_NAME} #${env.BUILD_NUMBER}.")
+    //         }
+    //     }
+    // }
 }
